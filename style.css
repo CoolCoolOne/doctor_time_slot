@@ -1,0 +1,61 @@
+.head{
+    display: flex;
+    /* border-radius: 10px; */
+}
+
+.photoImg{
+  border-radius: 20px;  
+}
+
+.day{
+    margin: 10px;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}   
+
+.oneDay{
+    border: 2px solid;
+    cursor: pointer;
+    background-color: bisque;
+    border-radius: 5px; 
+}
+
+.chosen{
+    background-color: rgb(128, 213, 163) !important;
+}
+
+
+.oneDay:hover{
+    background-color: rgb(128, 213, 163);
+}
+
+.d_o_week{
+    margin: 2px;
+}
+.date{
+    margin: 2px;
+}
+
+.freeTime{
+    margin: 10px;
+    width: 800px;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 10px;
+}
+
+.oneTime{
+    border: 2px solid;
+    cursor: pointer;
+    background-color: bisque;
+    border-radius: 5px; 
+}
+
+.oneTime p{
+    margin: 8px;
+}
+.oneTime:hover{
+    background-color: rgb(128, 213, 163);
+}
