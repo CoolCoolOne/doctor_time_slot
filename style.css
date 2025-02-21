@@ -1,14 +1,50 @@
-.head{
+@font-face {
+	font-family: 'monseratR'; 
+	src: url(/fonts/Montserrat-Regular.ttf); 
+}
+@font-face {
+	font-family: 'monseratB'; 
+	src: url(/fonts/Montserrat-Bold.ttf); 
+}
+
+.pContainer{
+    background-color: #d9f1ff;
+    font-family: 'monseratR'; 
+	font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 850px;
+}
+
+.headSl{
     display: flex;
+    font-family: 'monseratB'; 
     /* border-radius: 10px; */
+    margin-bottom: 30px;
 }
 
 .photoImg{
   border-radius: 20px;  
 }
 
+.info{
+    margin-left: 20px;
+    display: flex;
+    flex-direction:column;
+    gap: 20px;
+    justify-content: center; /*Центрирование по горизонтали*/
+}
+
+.dayTitle,.freeTimeTitle{
+    font-size: 20px;
+    margin-top: 20px;
+}
+
 .day{
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 800px;
     display: flex;
     justify-content: space-between;
@@ -16,19 +52,23 @@
 }   
 
 .oneDay{
-    border: 2px solid;
+    border: 2px solid #2c435b;
     cursor: pointer;
     background-color: bisque;
     border-radius: 5px; 
 }
 
 .chosen{
-    background-color: rgb(128, 213, 163) !important;
+    background-color: #5680b0 !important;
+    color: white !important;
+    border: 2px solid #2c435b !important;
 }
 
 
 .oneDay:hover{
-    background-color: rgb(128, 213, 163);
+    background-color: #5680b0;
+    color: white;
+    border: 2px solid #2c435b;
 }
 
 .d_o_week{
@@ -39,7 +79,8 @@
 }
 
 .freeTime{
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 800px;
     display: flex;
     /* justify-content: space-between; */
@@ -47,7 +88,7 @@
 }
 
 .oneTime{
-    border: 2px solid;
+    border: 2px solid #2c435b;
     cursor: pointer;
     background-color: bisque;
     border-radius: 5px; 
@@ -57,5 +98,36 @@
     margin: 8px;
 }
 .oneTime:hover{
-    background-color: rgb(128, 213, 163);
+    background-color: #5680b0;
+    color: white;
+    border: 2px solid #2c435b;
+}
+
+.okButton{
+    display: flex;
+    margin-top: 40px;
+    font-family: 'monseratR'; 
+    border: 2px solid #2c435b;
+    cursor: pointer;
+    background-color: bisque;
+    border-radius: 15px; 
+    width: 190px;
+}
+
+.okButton:hover{
+    background-color: #5680b0;
+    color: white;
+    border: 2px solid #2c435b;
+}
+
+
+
+.okButton p{
+    padding: 5px;
+    padding-top: 10px;
+    margin: 0;
+}
+
+.none{
+    visibility: hidden;
 }
