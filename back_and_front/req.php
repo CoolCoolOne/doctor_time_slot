@@ -2,12 +2,14 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Платный приём - направления");
 
-function req_services()
+$location_uuid = '2d760ee7-a3f9-4930-b984-32cb05ec02ce'; //miac
+
+function req_services($location_uuid)
 {
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/2d760ee7-a3f9-4930-b984-32cb05ec02ce/services?category_uuid=5ceebb43-b425-4bdb-964e-e4b6e97e398f',
+    CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/'. $location_uuid .'/services?category_uuid=5ceebb43-b425-4bdb-964e-e4b6e97e398f',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -28,11 +30,11 @@ function req_services()
 }
 
 
-$_services=req_services();
+$_services=req_services($location_uuid);
 
 foreach ($_services['data'] as $type) {
   echo '<hr>';
-  echo '<a href = ./detailed.php?uuid=' . $type['uuid'] . '&name=' . $type['name'] . '><img width="60" src="' . $type['images'][0] . '" alt="платное направление">' . $type['name'] . '</a>';
+  echo '<a href = ./detailed.php?i=' . $type['uuid'] . '&n=' . $type['name'] . '&d=' . $type['duration']['value'] . '><img width="60" src="' . $type['images'][0] . '" alt="платное направление">' . $type['name'] . '</a>';
   echo '<hr><br>';
 }
 
