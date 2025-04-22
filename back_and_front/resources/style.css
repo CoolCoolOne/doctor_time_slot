@@ -9,13 +9,14 @@
 
 .pContainer{
     background-color: #d9f1ff;
-    font-family: 'monseratR'; 
+    /* font-family: 'monseratR';  */
 	font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
     border-radius: 10px;
     width: 850px;
+    margin-bottom: 10px;
 }
 
 .headSl{
@@ -47,7 +48,7 @@
     margin-bottom: 10px;
     width: 800px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     gap: 5px;
 }   
 
@@ -83,6 +84,7 @@
     margin-bottom: 10px;
     width: 800px;
     display: flex;
+    flex-wrap: wrap;
     /* justify-content: space-between; */
     gap: 10px;
 }
@@ -127,6 +129,7 @@
     padding-top: 10px;
     margin: 0;
 }
+
 
 .none{
     visibility: hidden;
