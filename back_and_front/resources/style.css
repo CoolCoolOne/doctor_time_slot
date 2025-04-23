@@ -43,7 +43,7 @@
     margin-top: 20px;
 }
 
-.day{
+.days{
     margin-top: 10px;
     margin-bottom: 10px;
     width: 800px;
@@ -132,5 +132,5 @@
 
 
 .none{
-    visibility: hidden;
+    display: none;
 }

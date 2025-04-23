@@ -1,11 +1,13 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Запись на платный приём");
-$APPLICATION->SetAdditionalCSS("https://semashko.nnov.ru/patients/bronirovanie1/resources/style.css", true);
-$APPLICATION->AddHeadScript("https://semashko.nnov.ru/patients/bronirovanie1/resources/mainScript.js", true);
 
+$dir = $APPLICATION->GetCurDir();
+$APPLICATION->SetAdditionalCSS($dir . "resources/style.css", true);
+$APPLICATION->AddHeadScript($dir . "resources/mainScript.js", true);
+$servises_page='https://semashko.nnov.ru/patients/bronirovanie1/req.php';
 if (!((isset($_GET['i'])) and (isset($_GET['n'])) and (isset($_GET['d'])))) {
-    header('Location: https://semashko.nnov.ru/patients/bronirovanie1/req.php');
+    header('Location: '. $servises_page);
     exit();
 };
 
@@ -40,7 +42,7 @@ function req_stuffers($location_uuid)
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/'. $location_uuid .'/staffers/',
+        CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/' . $location_uuid . '/staffers/',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -69,7 +71,7 @@ function req_timeslots($location_uuid, $serv_id, $stuffer_id, $range_start, $ran
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/'. $location_uuid .'/time-slots/?service_uuid=' . $serv_id . '&staffer_uuid=' . $stuffer_id . '&range_start=' . $range_start . '&range_end=' . $range_end,
+        CURLOPT_URL => 'https://my.easyweek.io/api/public/v2/locations/' . $location_uuid . '/time-slots/?service_uuid=' . $serv_id . '&staffer_uuid=' . $stuffer_id . '&range_start=' . $range_start . '&range_end=' . $range_end,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -128,7 +130,7 @@ function get_date_formatted($timeslots_date)
 }
 function parse_timeslots_time_advanced($intervals_info, $slot_length)
 {
-    echo '<div class="freeTime">';
+
     foreach ($intervals_info as $timeslots) {
         foreach ($timeslots['intervals'] as $interval) {
             $sum_time = ($interval['end_formatted'] - $interval['start_formatted']);
@@ -142,13 +144,30 @@ function parse_timeslots_time_advanced($intervals_info, $slot_length)
                 echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
                 echo '</p>
                 </div>';
-
             }
         }
     }
+}
+
+function parse_timeslots_time($intervals, $slot_length)
+{
+    echo '<div class="none">';
+    foreach ($intervals as $interval) {
+        $sum_time = ($interval['end_formatted'] - $interval['start_formatted']);
+        $count_slot = floor($sum_time / $slot_length);
+        
+        for ($i = 0; $i < $count_slot; $i++) {
+            $start_slot = ($interval['start_formatted'] + ($slot_length * $i));
+            $start_slotArr = secToArray($start_slot);
+            echo '<p>';
+            echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
+            echo '</p>';
+        }
+        
+    }
     echo '</div>';
 }
-function parse_timeslots_day($timeslots_info)
+function parse_timeslots_day($timeslots_info, $slot_length)
 {
 
     foreach ($timeslots_info as $timeslots) {
@@ -158,17 +177,25 @@ function parse_timeslots_day($timeslots_info)
 
         echo '<div class="oneDay">
         <div class="d_o_week">' . $d_o_week . '</div>
-        <div class="date">' . $date_formatted . '</div>
-        </div>';
+        <div class="date">' . $date_formatted ;
+
+
+        parse_timeslots_time($timeslots['intervals'], $slot_length);
+
+        echo '</div></div>';
+
     }
 }
 ?>
 
 
 
+<h1><a href="<?=$servises_page?>"><- К выбору направления</a></h1>
 
-
+<br>
 <?php
+
+
 
 //parse stuffers
 $all_stuffers = req_stuffers($location_uuid);
@@ -190,18 +217,18 @@ foreach ($all_stuffers['data'] as $stuffer) {
                 <div class="dayTitle">
                     Выберете день:
                 </div>
-                <div class="day">
+                <div class="days">
                     <?php
                     $timeslots_info = req_timeslots($location_uuid, $serv_uuid, $stuffer['uuid'], $today, $week_after);
-                    parse_timeslots_day($timeslots_info['dates']);
+                    parse_timeslots_day($timeslots_info['dates'], $slot_length);
                     ?>
                 </div>
                 <div class="freeTimeTitle">
                     Доступное время для записи:
                 </div>
-                <div class="freeTime">
+                <div class="freeTime" id="stuffer" data-uuid=<?= $stuffer['uuid'] ?>>
                     <?php
-                    parse_timeslots_time_advanced($timeslots_info['dates'], $slot_length);
+                    // parse_timeslots_time_advanced($timeslots_info['dates'], $slot_length);
                     ?>
                 </div>
             </div>
