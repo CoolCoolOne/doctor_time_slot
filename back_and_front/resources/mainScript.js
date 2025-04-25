@@ -1,67 +1,68 @@
-let first_stuffer_days = document.querySelector("div.days");
-let buttonsD = first_stuffer_days.querySelectorAll("div.oneDay");
+// DBtn = day button
+// ABtn = approve button
 
-let timeslots_area = document.querySelector("div.freeTime");
-// let buttons = document.querySelectorAll("div.oneTime");
-// let approveBtn = document.querySelector("div.okButton");
+function getDBtnsAreas() {
+    const stuffers_days = document.querySelectorAll("div.days");
+    let DBtnsAreas = [];
+    stuffers_days.forEach((item, index) => {
+        DBtnsAreas[index] = item.querySelectorAll("div.oneDay");
+    })
+    return DBtnsAreas;
+};
 
+function getTimeslotsAreas() {
+    const timeslotsAreas = document.querySelectorAll("div.freeTime");
+    return timeslotsAreas;
+};
 
-for (let buttonD of buttonsD) {
-    buttonD.addEventListener('click', function () {
-        buttonsD.forEach(i => i.classList.remove('chosen'));
-        this.classList.toggle('chosen');
-        let slots = (buttonD.querySelector("div.date").querySelector("div.none").childNodes);
-        while (timeslots_area.firstChild) {
-            timeslots_area.removeChild(timeslots_area.firstChild);
+function displaySlots(buttonD, slotsArea) {
+    let slots = (buttonD.querySelector("div.date").querySelector("div.none").childNodes);
+    removeSlots(slotsArea);
+    renderSlots(slots, slotsArea);
+
+    function removeSlots(slotsArea) {
+        while (slotsArea.firstChild) {
+            slotsArea.removeChild(slotsArea.firstChild);
         }
+    };
 
-
+    function renderSlots(slots, slotsArea) {
         slots.forEach((slot) => {
             oneTime = document.createElement("div");
             oneTime.classList.add('oneTime');
             oneTime_p = document.createElement("p");
 
-            timeslots_area.appendChild(oneTime);
+            slotsArea.appendChild(oneTime);
             oneTime.appendChild(oneTime_p);
 
             oneTime_p.innerText = slot.outerText
-            // console.log(slot.outerText);
-            // console.log(oneTime_p);
         });
+    };
+};
 
-    });
+function renderDBtnsToggling(DBtns, thisBtn) {
+    DBtns.forEach(i => i.classList.remove('chosen'));
+    thisBtn.classList.toggle('chosen');
 };
 
 
 
-
-
-// for (let buttonD of buttonsD) {
-//     buttonD.addEventListener('click', function () {
-//         buttonsD.forEach(i => i.classList.remove('chosen'));
-//         buttons.forEach(i => i.classList.remove('chosen'));
-//         // approveBtn.classList.add('none');
-//         this.classList.toggle('chosen');
-
-//         for (let button of buttons) {
-//             button.classList.remove('none');
-//         };
-//     });
-// };
+const DBtnsAreas = getDBtnsAreas();
+const timeslotsAreas = getTimeslotsAreas();
 
 
 
-
-// for (let button of buttons) {
-//     button.addEventListener('click', function () {
-//         buttons.forEach(i => i.classList.remove('chosen'));
-
-//         this.classList.toggle('chosen');
-//         approveBtn.classList.remove('none');
-//     });
-// };
+DBtnsAreas.forEach((DBtnsArea, AreaIndex) => {
+    DBtnsArea.forEach((DBtn) => {
 
 
-// approveBtn.addEventListener('click', function () {
-//     console.log('запись на приём');
-// });
+        DBtn.addEventListener('click', function () {
+
+            renderDBtnsToggling(DBtnsArea, this);
+            displaySlots(DBtn, timeslotsAreas[AreaIndex]);
+
+        });
+
+
+    });
+});
