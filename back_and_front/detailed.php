@@ -5,9 +5,9 @@ $APPLICATION->SetTitle("Запись на платный приём");
 $dir = $APPLICATION->GetCurDir();
 $APPLICATION->SetAdditionalCSS($dir . "resources/style.css", true);
 $APPLICATION->AddHeadScript($dir . "resources/mainScript.js", true);
-$servises_page='https://semashko.nnov.ru/patients/bronirovanie1/req.php';
+$servises_page = 'https://semashko.nnov.ru/patients/bronirovanie1/req.php';
 if (!((isset($_GET['i'])) and (isset($_GET['n'])) and (isset($_GET['d'])))) {
-    header('Location: '. $servises_page);
+    header('Location: ' . $servises_page);
     exit();
 };
 
@@ -155,7 +155,7 @@ function parse_timeslots_time($intervals, $slot_length)
     foreach ($intervals as $interval) {
         $sum_time = ($interval['end_formatted'] - $interval['start_formatted']);
         $count_slot = floor($sum_time / $slot_length);
-        
+
         for ($i = 0; $i < $count_slot; $i++) {
             $start_slot = ($interval['start_formatted'] + ($slot_length * $i));
             $start_slotArr = secToArray($start_slot);
@@ -163,7 +163,6 @@ function parse_timeslots_time($intervals, $slot_length)
             echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
             echo '</p>';
         }
-        
     }
     echo '</div>';
 }
@@ -177,20 +176,19 @@ function parse_timeslots_day($timeslots_info, $slot_length)
 
         echo '<div class="oneDay">
         <div class="d_o_week">' . $d_o_week . '</div>
-        <div class="date">' . $date_formatted ;
+        <div class="date">' . $date_formatted;
 
 
         parse_timeslots_time($timeslots['intervals'], $slot_length);
 
         echo '</div></div>';
-
     }
 }
 ?>
 
 
 
-<h1><a href="<?=$servises_page?>"><- К выбору направления</a></h1>
+<h1><a href="<?= $servises_page ?>"><- К выбору направления</a></h1>
 
 <br>
 <?php
@@ -227,9 +225,8 @@ foreach ($all_stuffers['data'] as $stuffer) {
                     Доступное время для записи:
                 </div>
                 <div class="freeTime" id="stuffer" data-uuid=<?= $stuffer['uuid'] ?>>
-                    <?php
-                    // parse_timeslots_time_advanced($timeslots_info['dates'], $slot_length);
-                    ?>
+                </div>
+                <div class="approveBtnArea">
                 </div>
             </div>
 
