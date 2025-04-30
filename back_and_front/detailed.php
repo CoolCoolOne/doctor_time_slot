@@ -168,20 +168,23 @@ function parse_timeslots_time($intervals, $slot_length)
 }
 function parse_timeslots_day($timeslots_info, $slot_length)
 {
-
-    foreach ($timeslots_info as $timeslots) {
-        $d_o_week = det_weekday($timeslots['date']);
-        $date_formatted = get_date_formatted($timeslots['date']);
-
-
-        echo '<div class="oneDay">
-        <div class="d_o_week">' . $d_o_week . '</div>
-        <div class="date">' . $date_formatted;
+    if (!$timeslots_info) {
+        echo '<b class="no_content">Нет свободных дат</b>';
+    } else {
+        foreach ($timeslots_info as $timeslots) {
+            $d_o_week = det_weekday($timeslots['date']);
+            $date_formatted = get_date_formatted($timeslots['date']);
 
 
-        parse_timeslots_time($timeslots['intervals'], $slot_length);
+            echo '<div class="oneDay">
+            <div class="d_o_week">' . $d_o_week . '</div>
+            <div class="date">' . $date_formatted;
 
-        echo '</div></div>';
+
+            parse_timeslots_time($timeslots['intervals'], $slot_length);
+
+            echo '</div></div>';
+        }
     }
 }
 ?>
@@ -218,7 +221,11 @@ foreach ($all_stuffers['data'] as $stuffer) {
                 <div class="days">
                     <?php
                     $timeslots_info = req_timeslots($location_uuid, $serv_uuid, $stuffer['uuid'], $today, $week_after);
+
+
                     parse_timeslots_day($timeslots_info['dates'], $slot_length);
+
+
                     ?>
                 </div>
                 <div class="freeTimeTitle">

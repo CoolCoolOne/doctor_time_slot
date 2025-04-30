@@ -42,89 +42,74 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
 
             oneTime_p.innerText = slot.outerText;
 
-            addListenerToTimeBtn(oneTime, ABtnsArea, slots);
+            addListenerToTimeBtn(oneTime, ABtnsArea);
         });
     };
 
-    function addListenerToTimeBtn(timeBtn, ABtnsArea, slots) {
+    function addListenerToTimeBtn(timeBtn, ABtnsArea) {
         timeBtn.addEventListener('click', function () {
-            removeABtns(ABtnsArea);
-            renderABtns(ABtnsArea);
+
+            renderABtnsToggling(this);
+            displayABtn(ABtnsArea);
 
 
-
-
-            let childrens = this.parentNode.childNodes;
-
-            for (var i = 0; i < childrens.length; ++i) {
-                childrens[i].classList.remove('chosen');
-            }
-            this.classList.add('chosen');
-
-            function removeABtns(ABtnsArea) {
-                while (ABtnsArea.firstChild) {
-                    ABtnsArea.removeChild(ABtnsArea.firstChild);
+            function renderABtnsToggling(thisB) {
+                let childrens = thisB.parentNode.childNodes;
+                for (var i = 0; i < childrens.length; ++i) {
+                    childrens[i].classList.remove('chosen');
                 }
+                thisB.classList.add('chosen');
             };
+            function displayABtn(ABtnsArea) {
 
-            function renderABtns(ABtnsArea) {
+                removeABtns(ABtnsArea);
+                renderABtns(ABtnsArea);
 
-                okButton = document.createElement("div");
-                okButton.classList.add('okButton');
-                okButton_p = document.createElement("p");
-                okButton_img = document.createElement("img");
+                function removeABtns(ABtnsArea) {
+                    while (ABtnsArea.firstChild) {
+                        ABtnsArea.removeChild(ABtnsArea.firstChild);
+                    }
+                };
+
+                function renderABtns(ABtnsArea) {
+
+                    let okButton = document.createElement("div");
+                    okButton.classList.add('okButton');
+                    let okButton_p = document.createElement("p");
+                    let okButton_img = document.createElement("img");
 
 
 
-                ABtnsArea.appendChild(okButton);
-                okButton.appendChild(okButton_img);
-                okButton.appendChild(okButton_p);
+                    ABtnsArea.appendChild(okButton);
+                    okButton.appendChild(okButton_img);
+                    okButton.appendChild(okButton_p);
 
-                okButton_img.src = './resources/imgs/note.png';
-                okButton_img.width = '60';
-                okButton_p.innerText = 'Записаться на приём';
+                    okButton_img.src = './resources/imgs/note.png';
+                    okButton_img.width = '60';
+                    okButton_p.innerText = 'Записаться на приём';
+
+                };
+
 
             };
-
 
         });
     };
 };
 
-function displayABtn(ABtnsArea) {
-    removeABtns(ABtnsArea);
-    renderABtns(ABtnsArea);
 
-    function removeABtns(ABtnsArea) {
-        while (ABtnsArea.firstChild) {
-            ABtnsArea.removeChild(ABtnsArea.firstChild);
-        }
-    };
-
-    function renderABtns(ABtnsArea) {
-
-        okButton = document.createElement("div");
-        okButton.classList.add('okButton');
-        okButton_p = document.createElement("p");
-        okButton_img = document.createElement("img");
-
-
-
-        ABtnsArea.appendChild(okButton);
-        okButton.appendChild(okButton_img);
-        okButton.appendChild(okButton_p);
-
-        okButton_img.src = './resources/imgs/note.png';
-        okButton_img.width = '60';
-        okButton_p.innerText = 'Записаться на приём';
-
-    };
-};
 
 function renderDBtnsToggling(DBtns, thisBtn) {
     DBtns.forEach(i => i.classList.remove('chosen'));
     thisBtn.classList.toggle('chosen');
 };
+
+function removeABtn(ABtnsArea) {
+    while (ABtnsArea.firstChild) {
+        ABtnsArea.removeChild(ABtnsArea.firstChild);
+    }
+};
+
 
 
 
@@ -141,9 +126,8 @@ DBtnsAreas.forEach((DBtnsArea, AreaIndex) => {
         DBtn.addEventListener('click', function () {
 
             renderDBtnsToggling(DBtnsArea, this);
+            removeABtn(ABtnsAreas[AreaIndex]);
             displaySlots(DBtn, timeslotsAreas[AreaIndex], ABtnsAreas[AreaIndex]);
-
-            // displayABtn(ABtnsAreas[AreaIndex]);
 
         });
 
