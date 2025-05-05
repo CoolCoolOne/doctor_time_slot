@@ -1,16 +1,17 @@
 @font-face {
-	font-family: 'monseratR'; 
-	src: url(/fonts/Montserrat-Regular.ttf); 
-}
-@font-face {
-	font-family: 'monseratB'; 
-	src: url(/fonts/Montserrat-Bold.ttf); 
+    font-family: 'monseratR';
+    src: url(/fonts/Montserrat-Regular.ttf);
 }
 
-.pContainer{
+@font-face {
+    font-family: 'monseratB';
+    src: url(/fonts/Montserrat-Bold.ttf);
+}
+
+.pContainer {
     background-color: #d9f1ff;
     /* font-family: 'monseratR';  */
-	font-size: 18px;
+    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
@@ -19,67 +20,70 @@
     margin-bottom: 10px;
 }
 
-.headSl{
+.headSl {
     display: flex;
-    font-family: 'monseratB'; 
+    font-family: 'monseratB';
     /* border-radius: 10px; */
     margin-bottom: 30px;
 }
 
-.photoImg{
-  border-radius: 20px;  
+.photoImg {
+    border-radius: 20px;
 }
 
-.info{
+.info {
     margin-left: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 20px;
-    justify-content: center; /*Центрирование по горизонтали*/
+    justify-content: center;
+    /*Центрирование по горизонтали*/
 }
 
-.dayTitle,.freeTimeTitle{
+.dayTitle,
+.freeTimeTitle {
     font-size: 20px;
     margin-top: 20px;
 }
 
-.days{
+.days {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 800px;
     display: flex;
     justify-content: left;
     gap: 5px;
-}   
+}
 
-.oneDay{
+.oneDay {
     border: 2px solid #2c435b;
     cursor: pointer;
     background-color: bisque;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
-.chosen{
+.chosen {
     background-color: #5680b0 !important;
     color: white !important;
     border: 2px solid #2c435b !important;
 }
 
 
-.oneDay:hover{
+.oneDay:hover {
     background-color: #5680b0;
     color: white;
     border: 2px solid #2c435b;
 }
 
-.d_o_week{
-    margin: 2px;
-}
-.date{
+.d_o_week {
     margin: 2px;
 }
 
-.freeTime{
+.date {
+    margin: 2px;
+}
+
+.freeTime {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 800px;
@@ -89,34 +93,35 @@
     gap: 10px;
 }
 
-.oneTime{
+.oneTime {
     border: 2px solid #2c435b;
     cursor: pointer;
     background-color: bisque;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
-.oneTime p{
+.oneTime p {
     margin: 8px;
 }
-.oneTime:hover{
+
+.oneTime:hover {
     background-color: #5680b0;
     color: white;
     border: 2px solid #2c435b;
 }
 
-.okButton{
+.okButton {
     display: flex;
     margin-top: 40px;
-    font-family: 'monseratR'; 
+    font-family: 'monseratR';
     border: 2px solid #2c435b;
     cursor: pointer;
     background-color: bisque;
-    border-radius: 15px; 
+    border-radius: 15px;
     width: 190px;
 }
 
-.okButton:hover{
+.okButton:hover {
     background-color: #5680b0;
     color: white;
     border: 2px solid #2c435b;
@@ -124,13 +129,154 @@
 
 
 
-.okButton p{
+.okButton p {
     padding: 5px;
     padding-top: 10px;
     margin: 0;
 }
 
 
-.none{
+.none {
     display: none;
+}
+
+
+
+
+
+
+
+
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100vh;
+}
+
+.open-popup {
+    display: inline-block;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    background: #2982ff;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.popup__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s all;
+}
+
+.popup__bg.active {
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.5s all;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: #fff;
+    width: 400px;
+    padding: 25px;
+    transition: 0.5s all;
+}
+
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+    transition: 0.5s all;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.popup label {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.popup .label__text {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #cfd0d3;
+    margin-bottom: 5px;
+}
+
+.popup input {
+    height: 45px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #cfd0d3;
+}
+
+.popup input:focus {
+    border-bottom: 1px solid #2982ff;
+}
+
+.popup input:focus + .label__text {
+    color: #2982ff;
+}
+
+.popup textarea {
+    resize: none;
+    width: 100%;
+    height: 150px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #cfd0d3;
+    font-size: 18px;
+    padding-top: 5px;
+}
+
+.popup textarea:focus {
+    border-bottom: 1px solid #2982ff;
+}
+
+.popup textarea:focus + .label__text {
+    color: #2982ff;
+}
+
+.popup button {
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    border: 2px solid #2982ff;
+    background: #2982ff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.5s all;
+}
+
+.popup button:hover {
+    background: #fff;
+    color:#2982ff;
+    transition: 0.5s all;
 }

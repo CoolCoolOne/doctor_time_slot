@@ -42,59 +42,90 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
 
             oneTime_p.innerText = slot.outerText;
 
+            console.log(slot);
+
             addListenerToTimeBtn(oneTime, ABtnsArea);
         });
-    };
 
-    function addListenerToTimeBtn(timeBtn, ABtnsArea) {
-        timeBtn.addEventListener('click', function () {
+        function addListenerToAbtn(okButton) {
+            okButton.addEventListener('click', function (e) {
+                let popupBg = document.querySelector('.popup__bg');
+                let popup = document.querySelector('.popup');
+                let closePopupButton = document.querySelector('.close-popup');
 
-            renderABtnsToggling(this);
-            displayABtn(ABtnsArea);
+                e.preventDefault();
+                popupBg.classList.add('active');
+                popup.classList.add('active');
 
 
-            function renderABtnsToggling(thisB) {
-                let childrens = thisB.parentNode.childNodes;
-                for (var i = 0; i < childrens.length; ++i) {
-                    childrens[i].classList.remove('chosen');
-                }
-                thisB.classList.add('chosen');
-            };
-            function displayABtn(ABtnsArea) {
+                closePopupButton.addEventListener('click', () => {
+                    popupBg.classList.remove('active');
+                    popup.classList.remove('active');
+                });
 
-                removeABtns(ABtnsArea);
-                renderABtns(ABtnsArea);
-
-                function removeABtns(ABtnsArea) {
-                    while (ABtnsArea.firstChild) {
-                        ABtnsArea.removeChild(ABtnsArea.firstChild);
+                document.addEventListener('click', (e) => {
+                    if (e.target === popupBg) {
+                        popupBg.classList.remove('active');
+                        popup.classList.remove('active');
                     }
+                });
+            })
+        }
+
+        function addListenerToTimeBtn(timeBtn, ABtnsArea) {
+            timeBtn.addEventListener('click', function () {
+
+                renderABtnsToggling(this);
+                displayABtn(ABtnsArea);
+
+
+                function renderABtnsToggling(thisB) {
+                    let childrens = thisB.parentNode.childNodes;
+                    for (var i = 0; i < childrens.length; ++i) {
+                        childrens[i].classList.remove('chosen');
+                    }
+                    thisB.classList.add('chosen');
+                };
+                function displayABtn(ABtnsArea) {
+
+                    removeABtns(ABtnsArea);
+                    renderABtns(ABtnsArea);
+
+                    function removeABtns(ABtnsArea) {
+                        while (ABtnsArea.firstChild) {
+                            ABtnsArea.removeChild(ABtnsArea.firstChild);
+                        }
+                    };
+
+                    function renderABtns(ABtnsArea) {
+
+                        let okButton = document.createElement("div");
+                        okButton.classList.add('okButton');
+                        let okButton_p = document.createElement("p");
+                        let okButton_img = document.createElement("img");
+
+
+
+                        ABtnsArea.appendChild(okButton);
+                        okButton.appendChild(okButton_img);
+                        okButton.appendChild(okButton_p);
+
+                        okButton_img.src = './resources/imgs/note.png';
+                        okButton_img.width = '60';
+                        okButton_p.innerText = 'Записаться на приём';
+
+                        addListenerToAbtn(okButton);
+
+                    };
+
+
                 };
 
-                function renderABtns(ABtnsArea) {
-
-                    let okButton = document.createElement("div");
-                    okButton.classList.add('okButton');
-                    let okButton_p = document.createElement("p");
-                    let okButton_img = document.createElement("img");
-
-
-
-                    ABtnsArea.appendChild(okButton);
-                    okButton.appendChild(okButton_img);
-                    okButton.appendChild(okButton_p);
-
-                    okButton_img.src = './resources/imgs/note.png';
-                    okButton_img.width = '60';
-                    okButton_p.innerText = 'Записаться на приём';
-
-                };
-
-
-            };
-
-        });
+            });
+        };
     };
+
+
 };
 
 
@@ -134,3 +165,5 @@ DBtnsAreas.forEach((DBtnsArea, AreaIndex) => {
 
     });
 });
+
+
