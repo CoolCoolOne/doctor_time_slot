@@ -175,7 +175,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     opacity: 0;
     pointer-events: none;
     transition: 0.5s all;
@@ -266,17 +266,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #2c435b;
     font-size: 18px;
-    border: 2px solid #2982ff;
-    background: #2982ff;
+    border: 2px solid #2c435b;
+    background-color: bisque;
     cursor: pointer;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     transition: 0.5s all;
 }
 
 .popup button:hover {
-    background: #fff;
-    color:#2982ff;
+    background-color: #5680b0;
+    color: white;
+    border: 2px solid #2c435b;
     transition: 0.5s all;
 }
