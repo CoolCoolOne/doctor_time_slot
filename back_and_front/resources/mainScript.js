@@ -22,8 +22,11 @@ function getABtnsAreas() {
 
 function displaySlots(buttonD, slotsArea, ABtnsArea) {
     let slots = (buttonD.querySelector("div.date").querySelector("div.none").childNodes);
+
+    let day = (buttonD.querySelector("div.date").dataset.day)
+
     removeSlots(slotsArea);
-    renderSlots(slots, slotsArea);
+    renderSlots(slots, slotsArea, day);
 
     function removeSlots(slotsArea) {
         while (slotsArea.firstChild) {
@@ -31,7 +34,7 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
         }
     };
 
-    function renderSlots(slots, slotsArea) {
+    function renderSlots(slots, slotsArea, day) {
         slots.forEach((slot) => {
             oneTime = document.createElement("div");
             oneTime.classList.add('oneTime');
@@ -42,7 +45,8 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
 
             oneTime_p.innerText = slot.outerText;
 
-            console.log(slot);
+            oneTime.dataset.time = slot.dataset.time;
+            oneTime.dataset.day = day;
 
             addListenerToTimeBtn(oneTime, ABtnsArea);
         });
@@ -51,11 +55,38 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
             okButton.addEventListener('click', function (e) {
                 let popupBg = document.querySelector('.popup__bg');
                 let popup = document.querySelector('.popup');
+                let popup_info = document.querySelector('div.popup_info');
                 let closePopupButton = document.querySelector('.close-popup');
+
+
+                while (popup_info.firstChild) {
+                    popup_info.removeChild(popup_info.firstChild);
+                }
+
+                info1 = document.createElement("p");
+                info1.innerText = okButton.dataset.time;
+                info2 = document.createElement("p");
+                info2.innerText = okButton.dataset.day;
+                info3 = document.createElement("p");
+                info3.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidstuf;
+                info4 = document.createElement("p");
+                info4.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidloc;
+                info5 = document.createElement("p");
+                info5.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidserv;
+
+
+                popup_info.appendChild(info1);
+                popup_info.appendChild(info2);
+                popup_info.appendChild(info3);
+                popup_info.appendChild(info4);
+                popup_info.appendChild(info5);
 
                 e.preventDefault();
                 popupBg.classList.add('active');
                 popup.classList.add('active');
+
+
+
 
 
                 closePopupButton.addEventListener('click', () => {
@@ -89,7 +120,7 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                 function displayABtn(ABtnsArea) {
 
                     removeABtns(ABtnsArea);
-                    renderABtns(ABtnsArea);
+                    renderABtns(ABtnsArea, timeBtn.dataset);
 
                     function removeABtns(ABtnsArea) {
                         while (ABtnsArea.firstChild) {
@@ -97,7 +128,7 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                         }
                     };
 
-                    function renderABtns(ABtnsArea) {
+                    function renderABtns(ABtnsArea, thisB) {
 
                         let okButton = document.createElement("div");
                         okButton.classList.add('okButton');
@@ -109,6 +140,9 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                         ABtnsArea.appendChild(okButton);
                         okButton.appendChild(okButton_img);
                         okButton.appendChild(okButton_p);
+
+                        okButton.dataset.time = thisB.time;
+                        okButton.dataset.day = thisB.day;
 
                         okButton_img.src = './resources/imgs/note.png';
                         okButton_img.width = '60';

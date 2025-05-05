@@ -159,7 +159,7 @@ function parse_timeslots_time($intervals, $slot_length)
         for ($i = 0; $i < $count_slot; $i++) {
             $start_slot = ($interval['start_formatted'] + ($slot_length * $i));
             $start_slotArr = secToArray($start_slot);
-            echo '<p>';
+            echo '<p data-time='.$start_slot.'>';
             echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
             echo '</p>';
         }
@@ -178,7 +178,7 @@ function parse_timeslots_day($timeslots_info, $slot_length)
 
             echo '<div class="oneDay">
             <div class="d_o_week">' . $d_o_week . '</div>
-            <div class="date">' . $date_formatted;
+            <div class="date"  data-day='.$timeslots['date'].'> ' . $date_formatted;
 
 
             parse_timeslots_time($timeslots['intervals'], $slot_length);
@@ -204,7 +204,7 @@ foreach ($all_stuffers['data'] as $stuffer) {
     if ($stuffer['position'] === $serv_name) {
 
 ?>
-        <div class="pContainer">
+        <div class="pContainer" id="stuffer" data-uuidStuf=<?= $stuffer['uuid'] ?> data-uuidLoc=<?= $location_uuid ?> data-uuidServ=<?= $serv_uuid ?>>
             <div class="headSl">
                 <div class="photo">
                     <img width="120" class="photoImg" src="<?= $stuffer['avatar'] ?>" alt="врач_фото">
@@ -231,7 +231,7 @@ foreach ($all_stuffers['data'] as $stuffer) {
                 <div class="freeTimeTitle">
                     Доступное время для записи:
                 </div>
-                <div class="freeTime" id="stuffer" data-uuid=<?= $stuffer['uuid'] ?>>
+                <div class="freeTime" >
                 </div>
                 <div class="approveBtnArea">
                 </div>
@@ -268,6 +268,9 @@ foreach ($all_stuffers['data'] as $stuffer) {
             </div>
         </label>
         <button type="submit">Отправить</button>
+        <div class="popup_info">
+
+        </div>
     </form>
 </div>  
 
