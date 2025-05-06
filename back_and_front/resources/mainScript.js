@@ -45,6 +45,7 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
 
             oneTime_p.innerText = slot.outerText;
 
+            // передаём данные для записи
             oneTime.dataset.time = slot.dataset.time;
             oneTime.dataset.day = day;
 
@@ -59,27 +60,25 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                 let closePopupButton = document.querySelector('.close-popup');
 
 
-                while (popup_info.firstChild) {
-                    popup_info.removeChild(popup_info.firstChild);
+
+                setDataForBooking(okButton);
+
+
+
+                function setDataForBooking(okButton){
+                    popup_info.dataset.uuidstuf = okButton.parentNode.parentNode.parentNode.dataset.uuidstuf;
+                    popup_info.dataset.uuidloc = okButton.parentNode.parentNode.parentNode.dataset.uuidloc;
+                    popup_info.dataset.uuidserv = okButton.parentNode.parentNode.parentNode.dataset.uuidserv;
+                    
+                    let datetime = new Date(okButton.dataset.day);
+                    datetime.setSeconds(okButton.dataset.time);
+                    datetime = datetime.toISOString();
+                    console.log(datetime);
+    
+                    popup_info.dataset.datetime = datetime;
                 }
 
-                info1 = document.createElement("p");
-                info1.innerText = okButton.dataset.time;
-                info2 = document.createElement("p");
-                info2.innerText = okButton.dataset.day;
-                info3 = document.createElement("p");
-                info3.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidstuf;
-                info4 = document.createElement("p");
-                info4.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidloc;
-                info5 = document.createElement("p");
-                info5.innerText = okButton.parentNode.parentNode.parentNode.dataset.uuidserv;
 
-
-                popup_info.appendChild(info1);
-                popup_info.appendChild(info2);
-                popup_info.appendChild(info3);
-                popup_info.appendChild(info4);
-                popup_info.appendChild(info5);
 
                 e.preventDefault();
                 popupBg.classList.add('active');
@@ -141,6 +140,7 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                         okButton.appendChild(okButton_img);
                         okButton.appendChild(okButton_p);
 
+                        // передаём данные для записи
                         okButton.dataset.time = thisB.time;
                         okButton.dataset.day = thisB.day;
 
