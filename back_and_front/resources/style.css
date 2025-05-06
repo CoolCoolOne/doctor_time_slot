@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
     font-family: 'monseratR';
     src: url(/fonts/Montserrat-Regular.ttf);
 }
@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'monseratB';
     src: url(/fonts/Montserrat-Bold.ttf);
-}
+} */
 
 .pContainer {
     background-color: #d9f1ff;
