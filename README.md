@@ -1,6 +1,7 @@
 
 
-![Платный-приём-направления-Google-Chrome-2025-04-29-17-15-04](https://github.com/user-attachments/assets/c5b167ea-4eeb-4b0a-8819-5423d0ac3583)
+![Платный приём - направления - Google Chrome 2025-05-07 11-35-50](https://github.com/user-attachments/assets/6a1e6036-490e-478e-951f-7c33c5f230ea)
+
 
 <br>
 
