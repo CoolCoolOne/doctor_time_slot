@@ -250,29 +250,36 @@ foreach ($all_stuffers['data'] as $stuffer) {
     <form class="popup">
         <svg class="close-popup" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#2c435b" d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
 
-        <div class="popup_info" id = "booking_data";>
+        <div class="popup_info" id = "booking_data">
 
         </div>
         <label>
-            <input type="text" name="name">
+            <input type="" name="name" id = "customer_name">
             <div class="label__text">
-                Ваше имя
+                Ваше имя*
             </div>
         </label>
         <label>
-            <input type="tel" name="tel">
+            <input type="tel" name="tel" id = "customer_phone">
             <div class="label__text">
-                Ваш телефон
+                Ваш телефон*
             </div>
         </label>
         <label>
+            <input type="" name="name" id = "customer_email">
+            <div class="label__text">
+                Электронная почта 
+            </div>
+        </label>
+        <!-- <label>
             <textarea name="message"></textarea>
             <div class="label__text">
                 Ваше сообщение
             </div>
-        </label>
-        <button type="submit">Подтвердить запись</button>
-        
+        </label> -->
+        <div class="button" id = "customer_button">Подтвердить запись</div>
+        <div class="rights">Подтверждая запись Вы соглашаетесь с <a href="https://semashko.nnov.ru/upload/2024/politika_obraborki_pers_dan.pdf">политикой обработки персональных данных</a></div>
+        <div class="rules">* - обязательное поле</div>
     </form>
 </div>  
 

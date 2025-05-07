@@ -65,16 +65,16 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
 
 
 
-                function setDataForBooking(okButton){
+                function setDataForBooking(okButton) {
                     popup_info.dataset.uuidstuf = okButton.parentNode.parentNode.parentNode.dataset.uuidstuf;
                     popup_info.dataset.uuidloc = okButton.parentNode.parentNode.parentNode.dataset.uuidloc;
                     popup_info.dataset.uuidserv = okButton.parentNode.parentNode.parentNode.dataset.uuidserv;
-                    
+
                     let datetime = new Date(okButton.dataset.day);
                     datetime.setSeconds(okButton.dataset.time);
                     datetime = datetime.toISOString();
-                    console.log(datetime);
-    
+
+
                     popup_info.dataset.datetime = datetime;
                 }
 
@@ -201,3 +201,37 @@ DBtnsAreas.forEach((DBtnsArea, AreaIndex) => {
 });
 
 
+
+
+
+
+const booking_dataAr = document.getElementById('booking_data');
+const customer_name = document.getElementById('customer_name');
+const customer_phone = document.getElementById('customer_phone');
+const customer_email = document.getElementById('customer_email');
+const customer_button = document.getElementById('customer_button');
+
+
+customer_button.addEventListener('click', function () {
+
+    if (customer_name.value == '' && customer_phone.value == '') {
+        showErrorCustomer(customer_name);
+        showErrorCustomer(customer_phone);
+    }
+    else if (customer_name.value == '') {
+        showErrorCustomer(customer_name);
+    } else if (customer_phone.value == '') {
+        showErrorCustomer(customer_phone);
+    } else {
+        console.log(customer_name.value);
+        console.log('then send it and the other data...');
+    }
+
+});
+
+function showErrorCustomer(input){
+    input.classList.add('customerError');
+    setTimeout(() => {
+        input.classList.remove('customerError');
+    }, "5000");
+}
