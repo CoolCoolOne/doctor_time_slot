@@ -223,13 +223,38 @@ customer_button.addEventListener('click', function () {
     } else if (customer_phone.value == '') {
         showErrorCustomer(customer_phone);
     } else {
-        console.log(customer_name.value);
-        console.log('then send it and the other data...');
+
+        
+
+        let info = {
+            customer_name:  customer_name.value,
+            customer_phone: customer_phone.value,
+            customer_email: customer_email.value,
+            stuffer: booking_dataAr.dataset.uuidstuf,
+            location: booking_dataAr.dataset.uuidloc,
+            service: booking_dataAr.dataset.uuidserv,
+            datetime: booking_dataAr.dataset.datetime,
+        };
+
+        fetch('https://semashko.nnov.ru/patients/bronirovanie1/booking.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorizat': 'simpleDefence12052025'
+            },
+            body: JSON.stringify(info)
+        })
+            .then(response => {
+                return response.text();
+            })
+            .then(data => {
+                console.dir(data);
+            });
     }
 
 });
 
-function showErrorCustomer(input){
+function showErrorCustomer(input) {
     input.classList.add('customerError');
     setTimeout(() => {
         input.classList.remove('customerError');

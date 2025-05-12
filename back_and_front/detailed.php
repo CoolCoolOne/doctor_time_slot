@@ -5,7 +5,7 @@ $APPLICATION->SetTitle("Запись на платный приём");
 $dir = $APPLICATION->GetCurDir();
 $APPLICATION->SetAdditionalCSS($dir . "resources/style.css", true);
 $APPLICATION->AddHeadScript($dir . "resources/mainScript.js", true);
-$servises_page = 'https://semashko.nnov.ru/patients/bronirovanie1/req.php';
+$servises_page = $dir . "index.php";
 if (!((isset($_GET['i'])) and (isset($_GET['n'])) and (isset($_GET['d'])))) {
     header('Location: ' . $servises_page);
     exit();
@@ -278,7 +278,7 @@ foreach ($all_stuffers['data'] as $stuffer) {
             </div>
         </label> -->
         <div class="button" id = "customer_button">Подтвердить запись</div>
-        <div class="rights">Подтверждая запись Вы соглашаетесь с <a href="https://semashko.nnov.ru/upload/2024/politika_obraborki_pers_dan.pdf">политикой обработки персональных данных</a></div>
+        <div class="rights">Подтверждая запись Вы соглашаетесь с <a target="_blank" href="https://semashko.nnov.ru/upload/2024/politika_obraborki_pers_dan.pdf">политикой обработки персональных данных</a></div>
         <div class="rules">* - обязательное поле</div>
     </form>
 </div>  
