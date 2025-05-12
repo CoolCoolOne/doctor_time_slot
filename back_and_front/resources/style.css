@@ -151,6 +151,7 @@
 
 
 
+
 .open-popup {
     display: inline-block;
     padding: 15px 30px;
@@ -291,4 +292,23 @@
     border-bottom: 1px solid red !important;
     transition: all 500ms;
     background-color: rgb(255, 170, 170);
+}
+
+.noneRes {
+    display: none !important;
+}
+.back_info{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c435b;
+    font-size: 18px;
+    border: 2px solid #2c435b;
+    background-color: rgb(165, 252, 98);
+    transition: 0.5s all;
+    border-radius: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
 }

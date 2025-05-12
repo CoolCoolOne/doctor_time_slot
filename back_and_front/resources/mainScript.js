@@ -59,7 +59,8 @@ function displaySlots(buttonD, slotsArea, ABtnsArea) {
                 let popup_info = document.querySelector('div.popup_info');
                 let closePopupButton = document.querySelector('.close-popup');
 
-
+                document.getElementById('customer_button').classList.remove('noneRes');
+                document.getElementById('customer_back_info').classList.add('noneRes');
 
                 setDataForBooking(okButton);
 
@@ -210,6 +211,7 @@ const customer_name = document.getElementById('customer_name');
 const customer_phone = document.getElementById('customer_phone');
 const customer_email = document.getElementById('customer_email');
 const customer_button = document.getElementById('customer_button');
+const customer_back_info = document.getElementById('customer_back_info');
 
 
 customer_button.addEventListener('click', function () {
@@ -249,6 +251,9 @@ customer_button.addEventListener('click', function () {
             })
             .then(data => {
                 console.dir(data);
+                customer_button.classList.add('noneRes');
+                customer_back_info.classList.remove('noneRes');
+                customer_back_info.textContent = data;
             });
     }
 
