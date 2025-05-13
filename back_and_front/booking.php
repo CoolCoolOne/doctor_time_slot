@@ -1,7 +1,25 @@
 <?php
 $headers = getallheaders();
 if ($headers['Authorizat'] === 'simpleDefence12052025') {
-    $data = json_decode(file_get_contents('php://input'), true);
+    $booking_params = json_decode(file_get_contents('php://input'), true);
+
+    $booking_params['datetime']=substr($booking_params['datetime'], 0, -6).'0Z';
+
+
+
+    // if ($booking_params['customer_email']==''){
+    //     $booking_params['customer_email']='не указан';
+    // } else {
+
+    // }
+    // $booking_params['customer_name'];
+    // $booking_params['customer_phone'];
+    // $booking_params['customer_email'];
+    // $booking_params['stuffer'];
+    // $booking_params['location'];
+    // $booking_params['service'];
+    // $booking_params['datetime'];
+
     // print_r($data['customer_name'].', Вы успешно записались на приём!');
 
     // $curl = curl_init();
@@ -27,7 +45,11 @@ if ($headers['Authorizat'] === 'simpleDefence12052025') {
     // echo $response;
 
 
-    print_r($data);
+    print_r($booking_params['datetime']);
+    echo '<br>';
+    print_r($booking_params['stuffer']);
+    echo '<br>';
+    print_r($booking_params['service']);
 } else {
     if (isset($headers['Authorizat'])) {
         print_r('внутренняя ошибка авторизации');
