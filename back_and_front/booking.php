@@ -6,6 +6,15 @@ if ($headers['Authorizat'] === 'simpleDefence12052025') {
 
 
     $booking_params['datetime'] = substr($booking_params['datetime'], 0, -6) . '0Z';
+    $hours= substr($booking_params['datetime'], 11, -7);
+    $hours = $hours-3;
+    if (strlen($hours)==1){
+        $hours = '0' . $hours;
+    }
+    $booking_params['datetime'] = substr($booking_params['datetime'], 0, -9) . $hours . substr($booking_params['datetime'], -7);
+
+
+    
 
     if ($booking_params['customer_email'] == '') {
         $booking_params['customer_email'] = 'не_указан';
@@ -59,6 +68,7 @@ if ($headers['Authorizat'] === 'simpleDefence12052025') {
         print_r('Ошибка записи, попробуйте другое время или запишитесь по телефону 8 831 436 40 01');
 
     }
+
 } else {
     if (isset($headers['Authorizat'])) {
         print_r('внутренняя ошибка авторизации');
