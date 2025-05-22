@@ -259,7 +259,7 @@ foreach ($all_stuffers['data'] as $stuffer) {
         </label>
 
         <div class="button" id="customer_button">Подтвердить запись</div>
-        <div class="back_info noneRes" id="customer_back_info">uel</div>
+        <div class="back_info noneRes" id="customer_back_info"></div>
         <div class="rights">Подтверждая запись Вы соглашаетесь с <a target="_blank" href="https://semashko.nnov.ru/upload/2024/politika_obraborki_pers_dan.pdf">политикой обработки персональных данных</a></div>
         <div class="rules">* - обязательное поле</div>
     </form>
