@@ -15,7 +15,7 @@ if (!((isset($_GET['i'])) and (isset($_GET['n'])) and (isset($_GET['d'])))) {
 $location_uuid = '2d760ee7-a3f9-4930-b984-32cb05ec02ce'; //miac
 $serv_uuid = $_GET['i'];
 $serv_name = $_GET['n'];
-$slot_length = $_GET['d'] * 60;
+$slot_length = $_GET['d'] * 60; //только 15 минут пока что, что не ставь всегда 15 минут
 $today = date('Y-m-d');
 $week_after = date("Y-m-d", strtotime("+7 days"));
 ?>
@@ -90,6 +90,7 @@ function req_timeslots($location_uuid, $serv_id, $stuffer_id, $range_start, $ran
     curl_close($curl);
     $response = json_decode($response, true);
 
+
     return $response;
 }
 function det_weekday($timeslots_date)
@@ -128,43 +129,26 @@ function get_date_formatted($timeslots_date)
     $date_formatted = $day . '.' . $month;
     return $date_formatted;
 }
-function parse_timeslots_time_advanced($intervals_info, $slot_length)
+
+
+function parse_timeslots_time($intervals, $slot_length, $slots)
 {
+    
 
-    foreach ($intervals_info as $timeslots) {
-        foreach ($timeslots['intervals'] as $interval) {
-            $sum_time = ($interval['end_formatted'] - $interval['start_formatted']);
-            $count_slot = floor($sum_time / $slot_length);
-
-            for ($i = 0; $i < $count_slot; $i++) {
-                $start_slot = ($interval['start_formatted'] + ($slot_length * $i));
-                $start_slotArr = secToArray($start_slot);
-                echo '<div class="oneTime none">
-                <p>';
-                echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
-                echo '</p>
-                </div>';
-            }
-        }
-    }
-}
-
-function parse_timeslots_time($intervals, $slot_length)
-{
     echo '<div class="none">';
-    foreach ($intervals as $interval) {
-        $sum_time = ($interval['end_formatted'] - $interval['start_formatted']);
-        $count_slot = floor($sum_time / $slot_length);
+    foreach ($slots as $slot) {
 
-        for ($i = 0; $i < $count_slot; $i++) {
-            $start_slot = ($interval['start_formatted'] + ($slot_length * $i));
+        
+            $start_slot = $slot['start_formatted'];
             $start_slotArr = secToArray($start_slot);
-            echo '<p data-time='.$start_slot.'>';
+            echo '<p data-time=' . $start_slot . '>';
             echo $start_slotArr['hours'] . ':' . $start_slotArr['minutes'];
             echo '</p>';
-        }
+        
     }
     echo '</div>';
+
+    
 }
 function parse_timeslots_day($timeslots_info, $slot_length)
 {
@@ -178,10 +162,10 @@ function parse_timeslots_day($timeslots_info, $slot_length)
 
             echo '<div class="oneDay">
             <div class="d_o_week">' . $d_o_week . '</div>
-            <div class="date"  data-day='.$timeslots['date'].'> ' . $date_formatted;
+            <div class="date"  data-day=' . $timeslots['date'] . '> ' . $date_formatted;
 
 
-            parse_timeslots_time($timeslots['intervals'], $slot_length);
+            parse_timeslots_time($timeslots['intervals'], $slot_length, $timeslots['slots']);
 
             echo '</div></div>';
         }
@@ -231,7 +215,7 @@ foreach ($all_stuffers['data'] as $stuffer) {
                 <div class="freeTimeTitle">
                     Доступное время для записи:
                 </div>
-                <div class="freeTime" >
+                <div class="freeTime">
                 </div>
                 <div class="approveBtnArea">
                 </div>
@@ -248,36 +232,38 @@ foreach ($all_stuffers['data'] as $stuffer) {
 
 <div class="popup__bg">
     <form class="popup">
-        <svg class="close-popup" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#2c435b" d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
+        <svg class="close-popup" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path fill="#2c435b" d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" />
+        </svg>
 
-        <div class="popup_info" id = "booking_data">
+        <div class="popup_info" id="booking_data">
 
         </div>
         <label>
-            <input type="" name="name" id = "customer_name">
+            <input type="" name="name" id="customer_name">
             <div class="label__text">
                 Ваше имя*
             </div>
         </label>
         <label>
-            <input type="tel" name="tel" id = "customer_phone">
+            <input type="tel" name="tel" id="customer_phone">
             <div class="label__text">
                 Ваш телефон*
             </div>
         </label>
         <label>
-            <input type="" name="name" id = "customer_email">
+            <input type="" name="name" id="customer_email">
             <div class="label__text">
-                Электронная почта 
+                Электронная почта
             </div>
         </label>
 
-        <div class="button" id = "customer_button">Подтвердить запись</div>
-        <div class="back_info noneRes" id = "customer_back_info">uel</div>
+        <div class="button" id="customer_button">Подтвердить запись</div>
+        <div class="back_info noneRes" id="customer_back_info">uel</div>
         <div class="rights">Подтверждая запись Вы соглашаетесь с <a target="_blank" href="https://semashko.nnov.ru/upload/2024/politika_obraborki_pers_dan.pdf">политикой обработки персональных данных</a></div>
         <div class="rules">* - обязательное поле</div>
     </form>
-</div>  
+</div>
 
 
 
