@@ -217,10 +217,6 @@ const customer_back_load = document.getElementById('customer_back_load');
 
 customer_button.addEventListener('click', function () {
 
-customer_button.classList.add('noneRes');
-customer_back_load.classList.remove('noneRes');
-customer_back_load.classList.add('greyMsg');
-customer_back_load.textContent = 'отправляем данные..';
 
     if (customer_name.value == '' && customer_phone.value == '') {
         showErrorCustomer(customer_name);
@@ -232,7 +228,11 @@ customer_back_load.textContent = 'отправляем данные..';
         showErrorCustomer(customer_phone);
     } else {
 
-        
+        customer_button.classList.add('noneRes');
+        customer_back_load.classList.remove('noneRes');
+        customer_back_load.classList.add('greyMsg');
+        customer_back_load.textContent = 'отправляем данные..';
+
 
         let info = {
             customer_name: customer_name.value,
