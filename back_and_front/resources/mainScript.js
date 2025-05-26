@@ -212,9 +212,15 @@ const customer_phone = document.getElementById('customer_phone');
 const customer_email = document.getElementById('customer_email');
 const customer_button = document.getElementById('customer_button');
 const customer_back_info = document.getElementById('customer_back_info');
+const customer_back_load = document.getElementById('customer_back_load');
 
 
 customer_button.addEventListener('click', function () {
+
+customer_button.classList.add('noneRes');
+customer_back_load.classList.remove('noneRes');
+customer_back_load.classList.add('greyMsg');
+customer_back_load.textContent = 'отправляем данные..';
 
     if (customer_name.value == '' && customer_phone.value == '') {
         showErrorCustomer(customer_name);
@@ -229,7 +235,7 @@ customer_button.addEventListener('click', function () {
         
 
         let info = {
-            customer_name:  customer_name.value,
+            customer_name: customer_name.value,
             customer_phone: customer_phone.value,
             customer_email: customer_email.value,
             stuffer: booking_dataAr.dataset.uuidstuf,
@@ -250,10 +256,31 @@ customer_button.addEventListener('click', function () {
                 return response.text();
             })
             .then(data => {
-                console.dir(data);
-                customer_button.classList.add('noneRes');
+
+                
+                customer_back_load.classList.add('noneRes');
                 customer_back_info.classList.remove('noneRes');
-                customer_back_info.textContent = data;
+
+                let boking_txt;
+                switch (data) {
+                    case 'good':
+                        boking_txt = 'Вы успешно записались на приём!';
+                        customer_back_info.classList.add('greenMsg');
+                        break;
+                    case 'spot_booked':
+                        boking_txt = 'Это время уже занято, попробуйте другое';
+                        customer_back_info.classList.add('yellowMsg');
+                        break;
+                    case 'error':
+                        boking_txt = 'Ошибка, позвоните по телефону для записи...';
+                        customer_back_info.classList.add('redMsg');
+                        break;
+                    default:
+                        boking_txt = "Ошибка, позвоните по телефону для записи...";
+                        customer_back_info.classList.add('redMsg');
+                }
+
+                customer_back_info.textContent = boking_txt;
             });
     }
 

@@ -63,12 +63,12 @@ if ($headers['Authorizat'] === 'simpleDefence12052025') {
     $responseObj = json_decode($response);
 
     if (isset($responseObj->uuid)) {
-        print_r($usr_customer_name . ', Вы успешно записались на приём!');
+        print_r('good');
+    } else if ($responseObj->errors->booking[0] == 'validation.booking.spot_booked') {
+        print_r('spot_booked');
     } else {
-        print_r('Ошибка записи, попробуйте другое время или запишитесь по телефону 8 831 436 40 01');
-
+        print_r('error');
     }
-
 } else {
     if (isset($headers['Authorizat'])) {
         print_r('внутренняя ошибка авторизации');

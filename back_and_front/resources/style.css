@@ -306,9 +306,21 @@
     color: #2c435b;
     font-size: 18px;
     border: 2px solid #2c435b;
-    background-color: rgb(165, 252, 98);
+    /* background-color: rgb(165, 252, 98); */
     transition: 0.5s all;
     border-radius: 2px;
     padding-left: 2px;
     padding-right: 2px;
+}
+.greyMsg{
+    background-color: rgb(188, 188, 188);
+}
+.greenMsg{
+    background-color: rgb(165, 252, 98);
+}
+.yellowMsg{
+    background-color: rgb(252, 219, 98);
+}
+.redMsg{
+    background-color: rgb(255, 87, 87);
 }
