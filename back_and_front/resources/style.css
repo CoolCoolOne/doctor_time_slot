@@ -8,139 +8,276 @@
     src: url(/fonts/Montserrat-Bold.ttf);
 } */
 
-.pContainer {
-    background-color: #d9f1ff;
-    /* font-family: 'monseratR';  */
-    font-size: 18px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 850px;
-    margin-bottom: 10px;
+@media (min-width: 625px) {
+
+    .pContainer {
+        background-color: #d9f1ff;
+        /* font-family: 'monseratR';  */
+        font-size: 18px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 1100px;
+        margin-bottom: 10px;
+    }
+
+    .headSl {
+        display: flex;
+        font-family: 'monseratB';
+        /* border-radius: 10px; */
+        margin-bottom: 30px;
+    }
+
+    .photoImg {
+        border-radius: 20px;
+    }
+
+    .info {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        /*Центрирование по горизонтали*/
+    }
+
+    .dayTitle,
+    .freeTimeTitle {
+        font-size: 20px;
+        margin-top: 20px;
+    }
+
+    .days {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* width: 800px; */
+        display: flex;
+        justify-content: left;
+        gap: 5px;
+    }
+
+    .oneDay {
+        border: 2px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 5px;
+    }
+
+    .chosen {
+        background-color: #5680b0 !important;
+        color: white !important;
+        border: 2px solid #2c435b !important;
+    }
+
+
+    .oneDay:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 2px solid #2c435b;
+    }
+
+    .d_o_week {
+        margin: 2px;
+    }
+
+    .date {
+        margin: 2px;
+    }
+
+    .freeTime {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* width: 800px; */
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+        gap: 10px;
+    }
+
+    .oneTime {
+        border: 2px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 5px;
+    }
+
+    .oneTime p {
+        margin: 8px;
+    }
+
+    .oneTime:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 2px solid #2c435b;
+    }
+
+    .okButton {
+        display: flex;
+        margin-top: 40px;
+        font-family: 'monseratR';
+        border: 2px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 15px;
+        width: 190px;
+    }
+
+    .okButton:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 2px solid #2c435b;
+    }
+
+
+
+    .okButton p {
+        padding: 5px;
+        padding-top: 10px;
+        margin: 0;
+    }
+
+
+    .none {
+        display: none;
+    }
 }
+@media (max-width: 624px)  {
 
-.headSl {
-    display: flex;
-    font-family: 'monseratB';
-    /* border-radius: 10px; */
-    margin-bottom: 30px;
+    .pContainer {
+        background-color: #d9f1ff;
+        /* font-family: 'monseratR';  */
+        font-size: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        border-radius: 5px;
+        /* max-width: 650px; */
+        margin-bottom: 10px;
+    }
+
+
+
+    .headSl {
+        display: flex;
+        font-family: 'monseratB';
+        /* border-radius: 10px; */
+        margin-bottom: 30px;
+    }
+
+    .photoImg {
+        border-radius: 20px;
+    }
+
+    .info {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        /*Центрирование по горизонтали*/
+    }
+
+    .dayTitle,
+    .freeTimeTitle {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    .days {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* width: 800px; */
+        display: flex;
+        justify-content: left;
+        gap: 5px;
+    }
+
+    .oneDay {
+        border: 1px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 5px;
+    }
+
+    .chosen {
+        background-color: #5680b0 !important;
+        color: white !important;
+        border: 1px solid #2c435b !important;
+    }
+
+
+    .oneDay:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 1px solid #2c435b;
+    }
+
+    .d_o_week {
+        margin: 2px;
+    }
+
+    .date {
+        margin: 2px;
+    }
+
+    .freeTime {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* width: 800px; */
+        display: flex;
+        flex-wrap: wrap;
+        /* justify-content: space-between; */
+        gap: 10px;
+    }
+
+    .oneTime {
+        border: 1px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 5px;
+    }
+
+    .oneTime p {
+        margin: 4px;
+    }
+
+    .oneTime:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 1px solid #2c435b;
+    }
+
+    .okButton {
+        display: flex;
+        margin-top: 30px;
+        font-family: 'monseratR';
+        border: 1px solid #2c435b;
+        cursor: pointer;
+        background-color: bisque;
+        border-radius: 10px;
+        width: 190px;
+    }
+
+    .okButton:hover {
+        background-color: #5680b0;
+        color: white;
+        border: 2px solid #2c435b;
+    }
+
+
+
+    .okButton p {
+        padding: 4px;
+        padding-top: 10px;
+        margin: 0;
+    }
+
+
+    .none {
+        display: none;
+    }
 }
-
-.photoImg {
-    border-radius: 20px;
-}
-
-.info {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    /*Центрирование по горизонтали*/
-}
-
-.dayTitle,
-.freeTimeTitle {
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-.days {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 800px;
-    display: flex;
-    justify-content: left;
-    gap: 5px;
-}
-
-.oneDay {
-    border: 2px solid #2c435b;
-    cursor: pointer;
-    background-color: bisque;
-    border-radius: 5px;
-}
-
-.chosen {
-    background-color: #5680b0 !important;
-    color: white !important;
-    border: 2px solid #2c435b !important;
-}
-
-
-.oneDay:hover {
-    background-color: #5680b0;
-    color: white;
-    border: 2px solid #2c435b;
-}
-
-.d_o_week {
-    margin: 2px;
-}
-
-.date {
-    margin: 2px;
-}
-
-.freeTime {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 800px;
-    display: flex;
-    flex-wrap: wrap;
-    /* justify-content: space-between; */
-    gap: 10px;
-}
-
-.oneTime {
-    border: 2px solid #2c435b;
-    cursor: pointer;
-    background-color: bisque;
-    border-radius: 5px;
-}
-
-.oneTime p {
-    margin: 8px;
-}
-
-.oneTime:hover {
-    background-color: #5680b0;
-    color: white;
-    border: 2px solid #2c435b;
-}
-
-.okButton {
-    display: flex;
-    margin-top: 40px;
-    font-family: 'monseratR';
-    border: 2px solid #2c435b;
-    cursor: pointer;
-    background-color: bisque;
-    border-radius: 15px;
-    width: 190px;
-}
-
-.okButton:hover {
-    background-color: #5680b0;
-    color: white;
-    border: 2px solid #2c435b;
-}
-
-
-
-.okButton p {
-    padding: 5px;
-    padding-top: 10px;
-    margin: 0;
-}
-
-
-.none {
-    display: none;
-}
-
-
 
 
 
@@ -169,7 +306,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     opacity: 0;
     pointer-events: none;
     transition: 0.5s all;
@@ -187,7 +324,7 @@
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     background: #fff;
-    width: 400px;
+    max-width: 450px;
     padding: 25px;
     transition: 0.5s all;
     border-radius: 4px;
@@ -232,7 +369,7 @@
     border-bottom: 1px solid #2c435b;
 }
 
-.popup input:focus + .label__text {
+.popup input:focus+.label__text {
     color: #2c435b;
 }
 
@@ -251,7 +388,7 @@
     border-bottom: 1px solid #2c435b;
 }
 
-.popup textarea:focus + .label__text {
+.popup textarea:focus+.label__text {
     color: #2c435b;
 }
 
@@ -278,17 +415,19 @@
     transition: 0.5s all;
 }
 
-.popup div.rights{
+.popup div.rights {
     margin-top: 10px;
     text-align: center;
     font-size: 12px;
 }
-.popup div.rules{
+
+.popup div.rules {
     margin-top: 10px;
     /* text-align: center; */
     font-size: 14px;
 }
-.customerError{
+
+.customerError {
     border-bottom: 1px solid red !important;
     transition: all 500ms;
     background-color: rgb(255, 170, 170);
@@ -297,7 +436,8 @@
 .noneRes {
     display: none !important;
 }
-.back_info{
+
+.back_info {
     width: 100%;
     height: 55px;
     display: flex;
@@ -312,15 +452,19 @@
     padding-left: 2px;
     padding-right: 2px;
 }
-.greyMsg{
+
+.greyMsg {
     background-color: rgb(188, 188, 188);
 }
-.greenMsg{
+
+.greenMsg {
     background-color: rgb(165, 252, 98);
 }
-.yellowMsg{
+
+.yellowMsg {
     background-color: rgb(252, 219, 98);
 }
-.redMsg{
+
+.redMsg {
     background-color: rgb(255, 87, 87);
 }
